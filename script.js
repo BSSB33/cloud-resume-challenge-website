@@ -37,7 +37,7 @@ function erase() {
 
 // Start typing animation when page loads
 document.addEventListener("DOMContentLoaded", function() {
-    if (textArray.length) setTimeout(type, newTextDelay + 250);
+    if (textArray.length) setTimeout(type, 100);
 });
 
 // Smooth scrolling for navigation links

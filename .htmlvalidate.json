@@ -1,0 +1,10 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "require-sri": "off",
+    "no-inline-style": "off",
+    "attr-quotes": "error",
+    "close-order": "error",
+    "void-style": "error"
+  }
+}
