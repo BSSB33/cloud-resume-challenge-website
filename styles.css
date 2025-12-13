@@ -236,35 +236,40 @@ html {
     margin-bottom: 2rem;
 }
 
-.contact-info,
-.languages {
-    margin-bottom: 2rem;
+/* Info Grid - Compact Contact & Languages */
+.info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--bg-light);
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-color);
 }
 
-.contact-info h4,
-.languages h4 {
-    color: var(--text-dark);
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-}
-
-.contact-info ul,
-.languages ul {
-    list-style: none;
-}
-
-.contact-info li,
-.languages li {
-    padding: 0.5rem 0;
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     color: var(--text-light);
+    font-size: 0.95rem;
 }
 
-.contact-info a {
+.info-icon {
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.info-item a {
     color: var(--primary-color);
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
-.contact-info a:hover {
+.info-item a:hover {
+    color: var(--secondary-color);
     text-decoration: underline;
 }
 
@@ -512,6 +517,107 @@ html {
 .project-link:hover {
     background: var(--secondary-color);
     transform: translateY(-2px);
+}
+
+/* Project Toggle Button */
+.project-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 1rem 0;
+}
+
+.project-toggle:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease;
+}
+
+/* Collapsible Content */
+.project-collapsible {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+
+.project-collapsible.expanded {
+    max-height: 5000px;
+    transition: max-height 0.7s ease-in;
+}
+
+/* Project Diagram */
+.project-diagram {
+    margin: 2rem 0;
+    text-align: center;
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.infrastructure-diagram {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.infrastructure-diagram:hover {
+    transform: scale(1.02);
+}
+
+/* Project Details */
+.project-details {
+    margin: 2rem 0 1.5rem 0;
+}
+
+.project-details h4 {
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    margin: 1.5rem 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.project-features {
+    list-style: none;
+    padding-left: 0;
+    margin: 1rem 0;
+}
+
+.project-features li {
+    padding: 0.75rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.8;
+    color: var(--text-light);
+}
+
+.project-features li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.project-features li strong {
+    color: var(--text-dark);
+    font-weight: 600;
 }
 
 /* LinkedIn Contact Link */

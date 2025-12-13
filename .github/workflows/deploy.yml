@@ -104,6 +104,19 @@ jobs:
             --content-type "application/javascript" \
             --cache-control "max-age=604800"
 
+          # Image files (1 year cache)
+          aws s3 cp s3://${{ env.S3_BUCKET }}/resources/profile_picture.JPG \
+            s3://${{ env.S3_BUCKET }}/resources/profile_picture.JPG \
+            --metadata-directive REPLACE \
+            --content-type "image/jpeg" \
+            --cache-control "max-age=31536000"
+
+          aws s3 cp s3://${{ env.S3_BUCKET }}/resources/infrastructure-composer.png \
+            s3://${{ env.S3_BUCKET }}/resources/infrastructure-composer.png \
+            --metadata-directive REPLACE \
+            --content-type "image/png" \
+            --cache-control "max-age=31536000"
+
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \

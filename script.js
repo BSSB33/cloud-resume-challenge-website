@@ -169,3 +169,21 @@ function highlightNav() {
 }
 
 window.addEventListener('scroll', highlightNav);
+
+// Project Details Toggle
+function toggleProject() {
+    const details = document.getElementById('projectDetails');
+    const button = document.querySelector('.project-toggle');
+    const toggleText = button.querySelector('.toggle-text');
+    const toggleIcon = button.querySelector('.toggle-icon');
+
+    if (details.classList.contains('expanded')) {
+        details.classList.remove('expanded');
+        toggleText.textContent = 'Show Details';
+        toggleIcon.style.transform = 'rotate(0deg)';
+    } else {
+        details.classList.add('expanded');
+        toggleText.textContent = 'Hide Details';
+        toggleIcon.style.transform = 'rotate(180deg)';
+    }
+}
