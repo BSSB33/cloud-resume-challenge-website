@@ -71,28 +71,53 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// View counter placeholder
-// This will be replaced with actual API call to AWS Lambda + DynamoDB
+// View counter - calls Lambda function to increment and display count
 function updateViewCounter() {
     const viewCountElement = document.getElementById('view-count');
 
-    // Placeholder - will be replaced with actual API endpoint
-    // fetch('YOUR_API_GATEWAY_ENDPOINT')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         viewCountElement.textContent = data.views;
-    //     })
-    //     .catch(error => {
-    //         console.error('Error fetching view count:', error);
-    //         viewCountElement.textContent = '---';
-    //     });
+    // Check if element exists
+    if (!viewCountElement) {
+        console.error('View counter element not found');
+        return;
+    }
 
-    // For now, just show placeholder
-    viewCountElement.textContent = '---';
+    // Lambda Function URL
+    const API_ENDPOINT = 'https://idwplnuz6vbf2h7mjw6ztsa54q0mfwfy.lambda-url.eu-west-1.on.aws/';
+
+    // Show loading state
+    viewCountElement.textContent = '...';
+
+    // Call Lambda function
+    fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Format the number with thousand separators
+        const formattedViews = data.views.toLocaleString();
+        viewCountElement.textContent = formattedViews;
+    })
+    .catch(error => {
+        console.error('Error fetching view count:', error);
+        viewCountElement.textContent = '---';
+    });
 }
 
-// Call view counter on page load
-updateViewCounter();
+// Wait for DOM to be fully loaded before calling
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateViewCounter);
+} else {
+    // DOM already loaded
+    updateViewCounter();
+}
 
 // Intersection Observer for fade-in animations
 const observerOptions = {
