@@ -187,3 +187,32 @@ function toggleProject() {
         toggleIcon.style.transform = 'rotate(180deg)';
     }
 }
+
+// RAG Project Details Toggle
+function toggleRagProject() {
+    const details = document.getElementById('ragProjectDetails');
+    const buttons = document.querySelectorAll('.project-toggle');
+    let button = null;
+
+    // Find the button for RAG project
+    buttons.forEach(btn => {
+        if (btn.getAttribute('onclick') === 'toggleRagProject()') {
+            button = btn;
+        }
+    });
+
+    if (!button) return;
+
+    const toggleText = button.querySelector('.toggle-text');
+    const toggleIcon = button.querySelector('.toggle-icon');
+
+    if (details.classList.contains('expanded')) {
+        details.classList.remove('expanded');
+        toggleText.textContent = 'Show Details';
+        toggleIcon.style.transform = 'rotate(0deg)';
+    } else {
+        details.classList.add('expanded');
+        toggleText.textContent = 'Hide Details';
+        toggleIcon.style.transform = 'rotate(180deg)';
+    }
+}

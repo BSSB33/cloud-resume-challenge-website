@@ -203,13 +203,29 @@
                         from infrastructure provisioning to automated deployments.
                     </p>
 
-                    <!-- Toggle Button -->
-                    <button type="button" class="project-toggle" onclick="toggleProject()">
-                        <span class="toggle-text">Show Details</span>
-                        <svg class="toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-                        </svg>
-                    </button>
+                    <!-- Toggle Button and Links -->
+                    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <button type="button" class="project-toggle" onclick="toggleProject()">
+                            <span class="toggle-text">Show Details</span>
+                            <svg class="toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                            </svg>
+                        </button>
+                        <div class="project-links" style="margin: 0;">
+                            <a href="https://github.com/bssb33/cloud-resume-challenge-website" target="_blank" class="project-link">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 5px;">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                Website Code
+                            </a>
+                            <a href="https://github.com/bssb33/cloud-resume-challenge-iac" target="_blank" class="project-link">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 5px;">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                Terraform IaC
+                            </a>
+                        </div>
+                    </div>
 
                     <!-- Collapsible Content -->
                     <div class="project-collapsible" id="projectDetails">
@@ -254,19 +270,85 @@
                         <span class="tech-tag">GitHub Actions</span>
                         <span class="tech-tag">Python</span>
                     </div>
-                    <div class="project-links">
-                        <a href="https://github.com/bssb33/cloud-resume-challenge-website" target="_blank" class="project-link">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 5px;">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </div>
+
+                <!-- RAG Generative AI Project -->
+                <div class="project-card">
+                    <h3>RAG Generative AI Application</h3>
+                    <p class="project-description">
+                        A serverless Retrieval-Augmented Generation (RAG) application built on AWS for demo purpuses.
+                        It is demonstrating AI/ML engineering with AWS Bedrock, Knowledge Bases, and modern cloud architecture.
+                        Features intelligent document Q&amp;A and summarization using Claude Sonnet 4.5 and Haiku 4.5 models.
+                    </p>
+
+                    <!-- Toggle Button and Links -->
+                    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <button type="button" class="project-toggle" onclick="toggleRagProject()">
+                            <span class="toggle-text">Show Details</span>
+                            <svg class="toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
                             </svg>
-                            Website Code
-                        </a>
-                        <a href="https://github.com/bssb33/cloud-resume-challenge-iac" target="_blank" class="project-link">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 5px;">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            Terraform IaC
-                        </a>
+                        </button>
+                        <div class="project-links" style="margin: 0;">
+                            <a href="https://github.com/BSSB33/rag-generative-ai-iac" target="_blank" class="project-link">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 5px;">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                Terraform IaC
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Collapsible Content -->
+                    <div class="project-collapsible" id="ragProjectDetails">
+                        <!-- Infrastructure Diagram -->
+                        <div class="project-diagram">
+                            <img src="resources/rag-infrastructure-composer.png" alt="RAG Application Infrastructure Architecture" class="infrastructure-diagram">
+                        </div>
+                        <i>Please note that terraform manages 49 components in total for this project, however for the simplicity of this graph, I have removed resources like IAM Policies and some REST API resources.
+                            For the full graph, open the tamplate.yaml file from the linked repository.</i>
+
+                        <!-- Technical Implementation -->
+                        <div class="project-details">
+                            <h4>Architecture Highlights</h4>
+                            <ul class="project-features">
+                                <li><strong>Infrastructure as Code (Terraform):</strong> All AWS resources provisioned and managed declaratively using modular Terraform design. Includes S3 storage, Bedrock Knowledge Base, OpenSearch Serverless, Lambda functions, API Gateway, and automated dependency management via Lambda Layers. State stored in versioned S3 backend with DynamoDB state locking.</li>
+                                <li><strong>AWS Bedrock Knowledge Base:</strong> Managed vector database using OpenSearch Serverless for semantic document search. Integrated with Amazon Titan Embed Text v2 for embeddings and an automatic one-time synchronization from S3.</li>
+                                <li><strong>Claude AI Models via Inference Profiles:</strong> Leverages EU cross-region inference profiles for high availability. QA endpoint uses Claude Sonnet 4.5 reasoning and to answer complex questions. Summarize endpoint uses Claude Haiku 4.5 for fast document processing.</li>
+                                <li><strong>API Gateway REST API:</strong> Secure REST API with API key authentication, usage plans with throttling (100 req/sec, 1000 burst), CORS configuration, and AWS_PROXY Lambda integration for request/response handling.</li>
+                                <li><strong>Lambda Functions (Python 3.12):</strong> Two serverless functions with configured timeout and memory allocation. QA function performs RAG queries with context retrieval. Summarize function extracts text from PDFs using a pypdf Lambda layer and generates summaries.</li>
+                                <li><strong>Lambda Layers for Dependencies:</strong> Clean separation of code and dependencies using automated Lambda Layer builds. Terraform triggers pip install from requirements.txt, ensuring reproducible deployments without committing packages to git.</li>
+                                <li><strong>IAM Security:</strong> Fine-grained permissions following least privilege principle. Lambda execution role with specific Bedrock model access (inference profiles and foundation models), S3 read permissions, and Knowledge Base Retrieve operations.</li>
+                                <li><strong>OpenSearch Serverless:</strong> Vector database with automatic scaling, encryption at rest and in transit, and network isolation via VPC endpoints.</li>
+                                <li><strong>S3 Document Storage:</strong> Versioned S3 bucket with server-side encryption for document storage. Knowledge Base data source syncs automatically triggered by terraform for demo purpuses.</li>
+                                <li><strong>Modular Terraform Architecture:</strong> Infrastructure split into reusable modules (storage, knowledge-base, lambda-functions, api-gateway) promoting separation of concerns, testing, and maintainability.</li>
+                            </ul>
+                        </div>
+
+                        <h4>Notes:</h4>
+                        <p class="project-description">
+                            The purpuse of the demo is not to have it production ready, but to showcase my understanding of such a system.
+                            The goal was to have the entire system managed by Terraform.
+                            For future improvements the following developments could be done:
+                            Add CI/CD, Add Debounced Auto-Sync for the Knowledge Base, Introduce proper dev/production environment, Implement a user facing UI.
+                            The application is not kept up running due to the high costs of the AWS Open Search service,
+                            if you want to try it out, feel free to clone the repository, set up your AWS CLI profile, rename the project and hit terraform apply!
+                        </p>
+                    </div>
+
+                    <div class="project-tech">
+                        <span class="tech-tag">Terraform</span>
+                        <span class="tech-tag">AWS Bedrock</span>
+                        <span class="tech-tag">Claude AI</span>
+                        <span class="tech-tag">OpenSearch Serverless</span>
+                        <span class="tech-tag">AWS Lambda</span>
+                        <span class="tech-tag">API Gateway</span>
+                        <span class="tech-tag">S3</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">RAG</span>
+                        <span class="tech-tag">Vector Databases</span>
+                        <span class="tech-tag">Lambda Layers</span>
+                        <span class="tech-tag">IAM</span>
                     </div>
                 </div>
             </div>
