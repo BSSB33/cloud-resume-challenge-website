@@ -2,7 +2,7 @@
 const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cursor");
 
-const textArray = ["Data Engineer", "ETL Developer", "Cloud Engineer"];
+const textArray = ["a Data Engineer", "an ETL Developer", "a Cloud Engineer"];
 const typingDelay = 100;
 const erasingDelay = 50;
 const newTextDelay = 2000;
