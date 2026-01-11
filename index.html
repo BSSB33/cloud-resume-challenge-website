@@ -197,10 +197,19 @@
                             </svg>
                         </a>
                     </h3>
+
+                    <strong>Project Description:</strong>
                     <p class="project-description">
                         A production-ready serverless resume website built on AWS, demonstrating cloud architecture best practices,
                         infrastructure as code, and modern CI/CD workflows. This project showcases end-to-end cloud engineering skills
                         from infrastructure provisioning to automated deployments.
+                    </p>
+
+                    <strong>Personal Project Goal:</strong>
+                    <p class="project-description">
+                        My goal with this project was to get my hands dirty with terraform, and create an online CV that utilizes 
+                        technologies that are required by the Cloud Resume Challenge. With this small project, 
+                        I wanted to have a place where I can collect my small projects and share my portfolio. 
                     </p>
 
                     <!-- Toggle Button and Links -->
@@ -274,11 +283,31 @@
 
                 <!-- RAG Generative AI Project -->
                 <div class="project-card">
-                    <h3>RAG Generative AI Application using AWS Bedrock and OpenSearch</h3>
+                    <h3>
+                        RAG Generative AI Application using AWS Bedrock and OpenSearch
+                        <a href="https://catalog.workshops.aws/building-generative-ai-apps-on-aws-with-terraform/en-US/samples/docexplorer" target="_blank" class="challenge-link" aria-label="Source Terraform Samples">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-left: 5px;">
+                                <path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/>
+                            </svg>
+                        </a>
+                    </h3>
+
+                    <strong>Project Description:</strong>
                     <p class="project-description">
                         A serverless Retrieval-Augmented Generation (RAG) application built on AWS for demo purpuses.
                         It is demonstrating AI/ML engineering with AWS Bedrock, Knowledge Bases, and modern cloud architecture.
                         Features intelligent document Q&amp;A and summarization using Claude Sonnet 4.5 and Haiku 4.5 models.
+                    </p>
+
+                    <strong>Personal Project Goal:</strong>
+                    <p class="project-description">
+                        My goal with this project was to make a reproducable RAG Chatbot demo using only Terraform. 
+                        I have found some funny "Mars Travel Documents" online which I wanted to use to create a RAG chatbot on AWS technologies. 
+                        The main objective was to make sure that all the resources/components were managed by Terraform. 
+                        To make sure this is possible, I have found this official AWS sample codebase that belongs to a Workshop. 
+                        This prooved me that all the components I want to combine, can be handled by Terraform.
+                        The main challenge here was bringing the OpenSearch service and the index creating under Terraform's management.
+                        Terraform modularity was an additional goal I set for myself, this way, all the components can be re-used from this codebase.  
                     </p>
 
                     <!-- Toggle Button and Links -->
@@ -355,11 +384,24 @@
                 <!-- AWS Glue ETL Pipeline Project -->
                 <div class="project-card">
                     <h3>AWS Glue ETL Pipeline with Event-Driven Orchestration</h3>
+
+                    <strong>Project Description:</strong>
                     <p class="project-description">
                         An event-driven ETL pipeline built on AWS Glue demonstrating data engineering practices.
                         Processes the Netflix Movies (~9000 titles) with transformations (date parsing, feature extraction, data quality improvements),
                         converting CSV to Parquet format for analytics. Features multiple orchestration approaches: Terraform automation, EventBridge + Lambda event-driven architecture,
                         and AWS Step Functions state machines for complete workflow management.
+                    </p>
+
+                    <strong>Personal Project Goal:</strong>
+                    <p class="project-description">
+                        In this project, I wanted to create a demo completely managed by terraform in a way, 
+                        that it uses the Glue Crawlers to populate an AWS Glue Data Catalog Database. 
+                        The simple goal I set for myself was to have a Glue Job that executes some PySpark code, 
+                        giving me a dataset that can be crawled by two crawlers, resulting in a source and a destination table, which can be analysed by Athena. 
+                        Additionally, I wanted to add a Step Function State Machine to showcase similar approaches in data processing.
+                        By this point, the the demo could be 100% run by a simple <code>terraform apply</code> command, could be run manually, 
+                        trusting the rest of the runs to EventBridge, and could be run or scheduled by a State Machine.
                     </p>
 
                     <!-- Toggle Button and Links -->
