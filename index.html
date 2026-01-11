@@ -190,7 +190,7 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <h3>
-                        Cloud Resume Challenge
+                        Cloud Resume Challenge on AWS
                         <a href="https://cloudresumechallenge.dev/docs/the-challenge/aws/" target="_blank" class="challenge-link" aria-label="Official Cloud Resume Challenge">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-left: 5px;">
                                 <path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/>
@@ -274,7 +274,7 @@
 
                 <!-- RAG Generative AI Project -->
                 <div class="project-card">
-                    <h3>RAG Generative AI Application</h3>
+                    <h3>RAG Generative AI Application using AWS Bedrock and OpenSearch</h3>
                     <p class="project-description">
                         A serverless Retrieval-Augmented Generation (RAG) application built on AWS for demo purpuses.
                         It is demonstrating AI/ML engineering with AWS Bedrock, Knowledge Bases, and modern cloud architecture.
@@ -349,6 +349,113 @@
                         <span class="tech-tag">Vector Databases</span>
                         <span class="tech-tag">Lambda Layers</span>
                         <span class="tech-tag">IAM</span>
+                    </div>
+                </div>
+
+                <!-- AWS Glue ETL Pipeline Project -->
+                <div class="project-card">
+                    <h3>AWS Glue ETL Pipeline with Event-Driven Orchestration</h3>
+                    <p class="project-description">
+                        An event-driven ETL pipeline built on AWS Glue demonstrating data engineering practices.
+                        Processes the Netflix Movies (~9000 titles) with transformations (date parsing, feature extraction, data quality improvements),
+                        converting CSV to Parquet format for analytics. Features multiple orchestration approaches: Terraform automation, EventBridge + Lambda event-driven architecture,
+                        and AWS Step Functions state machines for complete workflow management.
+                    </p>
+
+                    <!-- Toggle Button and Links -->
+                    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <button type="button" class="project-toggle" onclick="toggleEtlProject()">
+                            <span class="toggle-text">Show Details</span>
+                            <svg class="toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                            </svg>
+                        </button>
+                        <div class="project-links" style="margin: 0;">
+                            <a href="https://github.com/BSSB33/aws-glue-demo-iac" target="_blank" class="project-link">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 5px;">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                Terraform IaC
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Collapsible Content -->
+                    <div class="project-collapsible" id="etlProjectDetails">
+                        <!-- Infrastructure Diagrams -->
+                        <div class="project-diagram">
+                            <img src="resources/etl-infrastructure-composer.png" alt="ETL Pipeline Infrastructure Architecture" class="infrastructure-diagram">
+                            <p style="margin-top: 1rem; font-style: italic; color: #6b7280; font-size: 0.9rem;">
+                                AWS Application Composer visualization showing all infrastructure components and their relationships
+                            </p>
+                        </div>
+
+                        <!-- Event-Driven Architecture Flow -->
+                        <div class="project-details" style="margin-top: 1.5rem;">
+                            <h4>Event-Driven Architecture: Understanding the Flow</h4>
+                            <p class="project-description">
+                                This project demonstrates event-driven architecture through three orchestration approaches:
+                            </p>
+                            <p class="project-description">
+                                <strong>1. Terraform Provisioner Automation:</strong> On <code>terraform apply</code>, provisioners trigger the "source crawler", polls its status, then automatically start the Glue ETL job, demonstrating infrastructure-level event orchestration.
+                            </p>
+                            <p class="project-description">
+                                <strong>2. EventBridge + Lambda Pattern:</strong> When the Glue job completes, it emits a Glue Job State Change event to EventBridge. EventBridge matches the event pattern and invokes a Lambda function, which triggers the "destination crawler". This creates a reactive, loosely-coupled architecture where components respond to state changes.
+                            </p>
+                            <p class="project-description">
+                                <strong>3. Step Functions Orchestration:</strong> The state machine orchestrates the full workflow: Starts "source crawler" → polls until READY → starts Glue job (sync waits for completion) → starts "destination crawler" → polls until READY. Provides centralized control with visual tracking.
+                            </p>
+                        </div>
+
+                        <!-- Technical Implementation -->
+                        <div class="project-details">
+                            <h4>Architecture Highlights</h4>
+                            <ul class="project-features">
+                                <li><strong>Infrastructure as Code:</strong> All AWS resources provisioned and managed declaratively by Terraform. S3 backend with DynamoDB state locking.</li>
+                                <li><strong>Glue Data Catalog:</strong> Centralized metadata repository with two crawlers. Source crawler uses custom CSV classifier with OpenCSVSerde for proper quoted field parsing. Destination crawler automatically catalogs transformed Parquet files which can be reviewed in AWS Athena.</li>
+                                <li><strong>Glue ETL Job (PySpark):</strong> Spark transformations to the dataset: column renaming, type casting, date parsing, feature extraction, calculated fields, data cleaning. Outputs Parquet with CloudWatch logging.</li>
+                                <li><strong>EventBridge Event-Driven:</strong> Rule monitors job state changes, invokes Lambda on completion. Creates a reactive architecture.</li>
+                                <li><strong>Lambda Function:</strong> Triggered by EventBridge, starts "destination crawler" on job success. Handles "crawler already running" errors.</li>
+                                <li><strong>Step Functions:</strong> Orchestrates full workflow with polling loops and sync patterns. Built-in error handling and CloudWatch Logs integration.</li>
+                                <li><strong>S3 Organization:</strong> Single bucket with folders: source/, destination/, scripts/, logs/, temp/.</li>
+                                <li><strong>IAM Security:</strong> Separate roles with scoped permissions for Glue, Lambda, and Step Functions. No wildcard access.</li>
+                                <li><strong>Data Transformations:</strong> Processes Netflix dataset. Extracts structured data and outputs 16 analytical columns optimized for Athena.</li>
+                            </ul>
+
+                            <h4>Orchestration Approaches</h4>
+                            <ul class="project-features">
+                                <li><strong>For Demo/Development:</strong> Terraform provisioners for instant deployment.</li>
+                                <li><strong>For Production:</strong> EventBridge + Lambda for reactive automation.</li>
+                                <li><strong>Can be Scheduled:</strong> Step Functions for centralized control.</li>
+                            </ul>
+
+                            <div class="project-diagram" style="margin-top: 1.5rem;">
+                                <img src="resources/etl-state-machine-run.png" alt="Step Functions State Machine Execution" class="infrastructure-diagram" style="max-width: 600px; width: 100%;">
+                                <p style="margin-top: 1rem; font-style: italic; color: #6b7280; font-size: 0.9rem;">
+                                    Step Functions execution showing workflow with status polling loops
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="project-tech">
+                        <span class="tech-tag">Terraform</span>
+                        <span class="tech-tag">AWS Glue</span>
+                        <span class="tech-tag">PySpark</span>
+                        <span class="tech-tag">AWS Lambda</span>
+                        <span class="tech-tag">EventBridge</span>
+                        <span class="tech-tag">Step Functions</span>
+                        <span class="tech-tag">S3</span>
+                        <span class="tech-tag">CloudWatch</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">ETL</span>
+                        <span class="tech-tag">Parquet</span>
+                        <span class="tech-tag">Athena</span>
+                        <span class="tech-tag">IAM</span>
+                        <span class="tech-tag">Event-Driven Architecture</span>
+                        <span class="tech-tag">AWS Athena</span>
+                        <span class="tech-tag">CloudWatch</span>
                     </div>
                 </div>
             </div>
