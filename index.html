@@ -318,7 +318,8 @@
                         To make sure this is possible, I have found this official <a href="https://github.com/aws-samples/aws-generative-ai-terraform-samples/tree/main/samples" target="_blank">AWS sample codebase</a> that belongs to a Workshop. 
                         This prooved me that all the components I want to combine, can be handled by Terraform.
                         The main challenge here was bringing the OpenSearch service and the index creating under Terraform's management.
-                        Terraform modularity was an additional goal I set for myself, this way, all the components can be re-used from this codebase.  
+                        Adding Bedrock Guardrails and designing the components using Terraform moduls was an additional goal I set for myself.
+                        This way, all the components can be re-used from this codebase, and I also demonstrate how simple it is to add guardrails for Bedrock. (See examples at the bottom)
                     </p>
 
                     <!-- Toggle Button and Links -->
@@ -345,7 +346,7 @@
                         <div class="project-diagram">
                             <img src="resources/rag-infrastructure-composer.png" alt="RAG Application Infrastructure Architecture" class="infrastructure-diagram">
                         </div>
-                        <i>Please note that terraform manages 49 components in total for this project, however for the simplicity of this graph, I have removed resources like IAM Policies and some REST API resources.
+                        <i>Please note that terraform manages exactly50 components in total for this project, however for the simplicity of this graph, I have removed resources like IAM Policies, the Guardrail and some REST API resources.
                             For the full graph, open the tamplate.yaml file from the linked repository.</i>
 
                         <!-- Technical Implementation -->
@@ -354,12 +355,13 @@
                             <ul class="project-features">
                                 <li><strong>Infrastructure as Code (Terraform):</strong> All AWS resources provisioned and managed declaratively using modular Terraform design. Includes S3 storage, Bedrock Knowledge Base, OpenSearch Serverless, Lambda functions, API Gateway, and automated dependency management via Lambda Layers. State stored in versioned S3 backend with DynamoDB state locking.</li>
                                 <li><strong>AWS Bedrock Knowledge Base:</strong> Managed vector database using OpenSearch Serverless for semantic document search. Integrated with Amazon Titan Embed Text v2 for embeddings and an automatic one-time synchronization from S3.</li>
+                                <li><strong>Bedrock Guardrails:</strong> Implemented example Guardrails agains user inquiries about "Legal" or "Medical" related questions.</li>
                                 <li><strong>Claude AI Models via Inference Profiles:</strong> Leverages EU cross-region inference profiles for high availability. QA endpoint uses Claude Sonnet 4.5 reasoning and to answer complex questions. Summarize endpoint uses Claude Haiku 4.5 for fast document processing.</li>
+                                <li><strong>OpenSearch Serverless:</strong> Vector database with automatic scaling, encryption at rest and in transit, and network isolation via VPC endpoints.</li>
                                 <li><strong>API Gateway REST API:</strong> Secure REST API with API key authentication, usage plans with throttling (100 req/sec, 1000 burst), CORS configuration, and AWS_PROXY Lambda integration for request/response handling.</li>
                                 <li><strong>Lambda Functions (Python 3.12):</strong> Two serverless functions with configured timeout and memory allocation. QA function performs RAG queries with context retrieval. Summarize function extracts text from PDFs using a pypdf Lambda layer and generates summaries.</li>
                                 <li><strong>Lambda Layers for Dependencies:</strong> Clean separation of code and dependencies using automated Lambda Layer builds. Terraform triggers pip install from requirements.txt, ensuring reproducible deployments without committing packages to git.</li>
                                 <li><strong>IAM Security:</strong> Fine-grained permissions following least privilege principle. Lambda execution role with specific Bedrock model access (inference profiles and foundation models), S3 read permissions, and Knowledge Base Retrieve operations.</li>
-                                <li><strong>OpenSearch Serverless:</strong> Vector database with automatic scaling, encryption at rest and in transit, and network isolation via VPC endpoints.</li>
                                 <li><strong>S3 Document Storage:</strong> Versioned S3 bucket with server-side encryption for document storage. Knowledge Base data source syncs automatically triggered by terraform for demo purpuses.</li>
                                 <li><strong>Modular Terraform Architecture:</strong> Infrastructure split into reusable modules (storage, knowledge-base, lambda-functions, api-gateway) promoting separation of concerns, testing, and maintainability.</li>
                             </ul>
@@ -372,8 +374,67 @@
                             For future improvements the following developments could be done:
                             Add CI/CD, Add Debounced Auto-Sync for the Knowledge Base, Introduce proper dev/production environment, Implement a user facing UI.
                             The application is not kept up running due to the high costs of the AWS Open Search service,
-                            if you want to try it out, feel free to clone the repository, set up your AWS CLI profile, rename the project and hit terraform apply!
+                            if you want to try it out, feel free to clone the repository, set up your AWS CLI profile, rename the project and execute the <code>terraform apply</code> command!
                         </p>
+
+                        <h4>Example ALLOWED Guardrail Request & Response:</h4>
+                        <strong>Request:</strong>
+                        <pre><code>curl -X POST https://&lt;api-id&gt;.execute-api.eu-west-1.amazonaws.com/prod/qa \
+  -H "x-api-key: &lt;api-key&gt;" \
+  -H "Content-Type: application/json" \
+  -d '{"question": "What are the visa requirements for Mars?", ...}'</code></pre>
+
+                        <strong>Response:</strong>
+                        <pre><code>{
+  "answer": "Based on the context provided, the visa requirements for Mars travelers include:
+  1. **Valid Earth Passport** - Must have an expiry date extending beyond your return to Earth
+  2. **Proof of Galactic Citizenship** - A signed declaration confirming you are from Earth
+  3. **Martian Language Proficiency Test** - Must demonstrate basic phrases like 'Take me to your leader'
+  4. **Alien Abduction Insurance** - Required for peace of mind, though Martian abductions are rare
+  The document mentions a 'pro tip' that processing can be expedited by offering Earth chocolate to the Martian consulate.",
+  "sources": [
+    {
+      "document": 1,
+      "score": 0.7625329,
+      "location": {
+        "s3Location": {
+          "uri": "s3://vitraiaws-rag-documents/Visa Requirements for Mars Travelers.pdf"
+        },
+        "type": "S3"
+      }
+    },
+    {...}
+  ],
+  "question": "What are the visa requirements for Mars?",
+  "documentsRetrieved": 5
+}</code></pre>
+
+                        <h4>Example DENIED Guardrail Request & Response:</h4>
+                        <strong>Request:</strong>
+                        <pre><code>curl -X POST https://&lt;api-id&gt;.execute-api.eu-west-1.amazonaws.com/prod/qa \
+  -H "x-api-key: &lt;api-key&gt;" \
+  -H "Content-Type: application/json" \
+  -d '{"question": "What are my legal rights if the Mars immigration office denies my visa application?", ...}'</code></pre>
+
+                        <strong>Response:</strong>
+                        <pre><code>{
+  "answer": "I cannot answer that question as it violates our content policy.",
+  "sources": [
+    {
+      "document": 1,
+      "score": 0.46830863,
+      "location": {
+        "s3Location": {
+          "uri": "s3://vitraiaws-rag-documents/Visa Requirements for Mars Travelers.pdf"
+        },
+        "type": "S3"
+      }
+    },
+    {...}
+  ],
+  "question": "What are my legal rights if the Mars immigration office denies my visa application?",
+  "documentsRetrieved": 4
+}</code></pre>
                     </div>
 
                     <div class="project-tech">
@@ -540,14 +601,6 @@
     <section id="achievements" class="section section-alt">
         <div class="container">
             <h2 class="section-title">Achievements</h2>
-            <div class="achievement">
-                <h4>Migrated legacy batching pipelines to streaming solutions</h4>
-                <p>
-                    We maintained large-scale legacy pipelines, processing data using batching solutions. With my team, we have successfully
-                    migrated away from these legacy systems and replaced them with state-of-the-art streaming solutions, providing live updates
-                    and more a cost-effective infrastructure.
-                </p>
-            </div>
 
             <div class="achievement">
                 <h4>Designed and maintained dozens of ETL pipelines for data acquisition and processing</h4>
@@ -555,6 +608,15 @@
                     Architected and maintained large-scale ETL pipelines downloading data from official providers like Cloudera, Camerdata, HitHorizons
                     and public web repositories. Implemented processing workflows using EC2 instances, applied proprietary matching tools for data
                     enrichment, and orchestrated uploads to our AWS-based data lake.
+                </p>
+            </div>
+
+            <div class="achievement">
+                <h4>Migrated legacy batching pipelines to streaming solutions</h4>
+                <p>
+                    We maintained large-scale legacy pipelines, processing data using batching solutions. With my team, we have successfully
+                    migrated away from these legacy systems and replaced them with state-of-the-art streaming solutions, providing live updates
+                    and more a cost-effective infrastructure.
                 </p>
             </div>
             
@@ -578,13 +640,13 @@
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                     </svg>
                 </a>
-                <a href="mailto:vitraig@gmail.com" aria-label="Email">
+                <a href="mailto:vitraig[at]hotmail[dot]com" aria-label="Email">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
                     </svg>
                 </a>
             </div>
-            <p>&copy; 2025 Vitrai Gábor. All rights reserved.</p>
+            <p>&copy; 2025 Vitrai Gábor. All rights reserved. Hosted 100% on AWS Cloud.</p>
         </div>
     </footer>
 
