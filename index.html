@@ -50,8 +50,8 @@
                     <p>
                         I am an enthusiastic Data Engineer with a strong background in Computer Science and more than 3 years of experience.
                         I specialize in ETL development, data pipeline design, and data warehousing using both streaming and batch processing solutions.
-                        Experienced in leveraging the AWS Cloud and Apache Kafka for data-heavy projects. I have proven to be reliable as an On-Call Engineer and
-                        demonstrated strong collaboration and independent work skills.
+                        I am experienced in leveraging the AWS Cloud and Apache Kafka for data-heavy projects. I have proven to be reliable as an On-Call Engineer and
+                        demonstrated strong collaboration and independent work skills. I have personal interest in cloud solutions, specially in the AWS Cloud.
                     </p>
                     <div class="info-grid">
                         <div class="info-item">
@@ -147,6 +147,17 @@
                             </p>
                         </div>
                     </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2020. Mar. - 2020. Jul.</div>
+                        <div class="timeline-content">
+                            <h4>Java Software Engineer</h4>
+                            <p class="company">Eötvös Loránd University, Budapest, Hungary · Contract</p>
+                            <p>
+                                Developed a map viewer web application using the Spring framework. Responsible for backend services development,
+                                while also contributing to the user-facing client and deployment of the finished application.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -190,17 +201,26 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <h3>
-                        Cloud Resume Challenge
+                        Cloud Resume Challenge on AWS
                         <a href="https://cloudresumechallenge.dev/docs/the-challenge/aws/" target="_blank" class="challenge-link" aria-label="Official Cloud Resume Challenge">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-left: 5px;">
                                 <path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/>
                             </svg>
                         </a>
                     </h3>
+
+                    <strong>Project Description:</strong>
                     <p class="project-description">
                         A production-ready serverless resume website built on AWS, demonstrating cloud architecture best practices,
                         infrastructure as code, and modern CI/CD workflows. This project showcases end-to-end cloud engineering skills
                         from infrastructure provisioning to automated deployments.
+                    </p>
+
+                    <strong>Personal Project Goal:</strong>
+                    <p class="project-description">
+                        My goal with this project was to get my hands dirty with terraform, and create an online CV that utilizes
+                        technologies that are required by the Cloud Resume Challenge. With this small project,
+                        I wanted to have a place where I can collect my small projects and share my portfolio.
                     </p>
 
                     <!-- Toggle Button and Links -->
@@ -274,11 +294,32 @@
 
                 <!-- RAG Generative AI Project -->
                 <div class="project-card">
-                    <h3>RAG Generative AI Application</h3>
+                    <h3>
+                        RAG Generative AI Application using AWS Bedrock and OpenSearch
+                        <a href="https://catalog.workshops.aws/building-generative-ai-apps-on-aws-with-terraform/en-US/samples/docexplorer" target="_blank" class="challenge-link" aria-label="Source Terraform Samples">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-left: 5px;">
+                                <path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/>
+                            </svg>
+                        </a>
+                    </h3>
+
+                    <strong>Project Description:</strong>
                     <p class="project-description">
                         A serverless Retrieval-Augmented Generation (RAG) application built on AWS for demo purpuses.
                         It is demonstrating AI/ML engineering with AWS Bedrock, Knowledge Bases, and modern cloud architecture.
                         Features intelligent document Q&amp;A and summarization using Claude Sonnet 4.5 and Haiku 4.5 models.
+                    </p>
+
+                    <strong>Personal Project Goal:</strong>
+                    <p class="project-description">
+                        My goal with this project was to make a reproducable RAG Chatbot demo using only Terraform.
+                        I have found some funny "Mars Travel Documents" online which I wanted to use to create a RAG chatbot on AWS technologies.
+                        The main objective was to make sure that all the resources/components were managed by Terraform.
+                        To make sure this is possible, I have found this official <a href="https://github.com/aws-samples/aws-generative-ai-terraform-samples/tree/main/samples" target="_blank">AWS sample codebase</a> that belongs to a Workshop.
+                        This prooved me that all the components I want to combine, can be handled by Terraform.
+                        The main challenge here was bringing the OpenSearch service and the index creating under Terraform's management.
+                        Adding Bedrock Guardrails and designing the components using Terraform moduls was an additional goal I set for myself.
+                        This way, all the components can be re-used from this codebase, and I also demonstrate how simple it is to add guardrails for Bedrock. (See examples at the bottom)
                     </p>
 
                     <!-- Toggle Button and Links -->
@@ -305,7 +346,7 @@
                         <div class="project-diagram">
                             <img src="resources/rag-infrastructure-composer.png" alt="RAG Application Infrastructure Architecture" class="infrastructure-diagram">
                         </div>
-                        <i>Please note that terraform manages 49 components in total for this project, however for the simplicity of this graph, I have removed resources like IAM Policies and some REST API resources.
+                        <i>Please note that terraform manages exactly50 components in total for this project, however for the simplicity of this graph, I have removed resources like IAM Policies, the Guardrail and some REST API resources.
                             For the full graph, open the tamplate.yaml file from the linked repository.</i>
 
                         <!-- Technical Implementation -->
@@ -314,12 +355,13 @@
                             <ul class="project-features">
                                 <li><strong>Infrastructure as Code (Terraform):</strong> All AWS resources provisioned and managed declaratively using modular Terraform design. Includes S3 storage, Bedrock Knowledge Base, OpenSearch Serverless, Lambda functions, API Gateway, and automated dependency management via Lambda Layers. State stored in versioned S3 backend with DynamoDB state locking.</li>
                                 <li><strong>AWS Bedrock Knowledge Base:</strong> Managed vector database using OpenSearch Serverless for semantic document search. Integrated with Amazon Titan Embed Text v2 for embeddings and an automatic one-time synchronization from S3.</li>
+                                <li><strong>Bedrock Guardrails:</strong> Implemented example Guardrails agains user inquiries about "Legal" or "Medical" related questions.</li>
                                 <li><strong>Claude AI Models via Inference Profiles:</strong> Leverages EU cross-region inference profiles for high availability. QA endpoint uses Claude Sonnet 4.5 reasoning and to answer complex questions. Summarize endpoint uses Claude Haiku 4.5 for fast document processing.</li>
+                                <li><strong>OpenSearch Serverless:</strong> Vector database with automatic scaling, encryption at rest and in transit, and network isolation via VPC endpoints.</li>
                                 <li><strong>API Gateway REST API:</strong> Secure REST API with API key authentication, usage plans with throttling (100 req/sec, 1000 burst), CORS configuration, and AWS_PROXY Lambda integration for request/response handling.</li>
                                 <li><strong>Lambda Functions (Python 3.12):</strong> Two serverless functions with configured timeout and memory allocation. QA function performs RAG queries with context retrieval. Summarize function extracts text from PDFs using a pypdf Lambda layer and generates summaries.</li>
                                 <li><strong>Lambda Layers for Dependencies:</strong> Clean separation of code and dependencies using automated Lambda Layer builds. Terraform triggers pip install from requirements.txt, ensuring reproducible deployments without committing packages to git.</li>
                                 <li><strong>IAM Security:</strong> Fine-grained permissions following least privilege principle. Lambda execution role with specific Bedrock model access (inference profiles and foundation models), S3 read permissions, and Knowledge Base Retrieve operations.</li>
-                                <li><strong>OpenSearch Serverless:</strong> Vector database with automatic scaling, encryption at rest and in transit, and network isolation via VPC endpoints.</li>
                                 <li><strong>S3 Document Storage:</strong> Versioned S3 bucket with server-side encryption for document storage. Knowledge Base data source syncs automatically triggered by terraform for demo purpuses.</li>
                                 <li><strong>Modular Terraform Architecture:</strong> Infrastructure split into reusable modules (storage, knowledge-base, lambda-functions, api-gateway) promoting separation of concerns, testing, and maintainability.</li>
                             </ul>
@@ -332,8 +374,67 @@
                             For future improvements the following developments could be done:
                             Add CI/CD, Add Debounced Auto-Sync for the Knowledge Base, Introduce proper dev/production environment, Implement a user facing UI.
                             The application is not kept up running due to the high costs of the AWS Open Search service,
-                            if you want to try it out, feel free to clone the repository, set up your AWS CLI profile, rename the project and hit terraform apply!
+                            if you want to try it out, feel free to clone the repository, set up your AWS CLI profile, rename the project and execute the <code>terraform apply</code> command!
                         </p>
+
+                        <h4>Example ALLOWED Guardrail Request &amp; Response:</h4>
+                        <strong>Request:</strong>
+                        <pre><code>curl -X POST https://&lt;api-id&gt;.execute-api.eu-west-1.amazonaws.com/prod/qa \
+  -H "x-api-key: &lt;api-key&gt;" \
+  -H "Content-Type: application/json" \
+  -d '{"question": "What are the visa requirements for Mars?", ...}'</code></pre>
+
+                        <strong>Response:</strong>
+                        <pre><code>{
+  "answer": "Based on the context provided, the visa requirements for Mars travelers include:
+  1. **Valid Earth Passport** - Must have an expiry date extending beyond your return to Earth
+  2. **Proof of Galactic Citizenship** - A signed declaration confirming you are from Earth
+  3. **Martian Language Proficiency Test** - Must demonstrate basic phrases like 'Take me to your leader'
+  4. **Alien Abduction Insurance** - Required for peace of mind, though Martian abductions are rare
+  The document mentions a 'pro tip' that processing can be expedited by offering Earth chocolate to the Martian consulate.",
+  "sources": [
+    {
+      "document": 1,
+      "score": 0.7625329,
+      "location": {
+        "s3Location": {
+          "uri": "s3://vitraiaws-rag-documents/Visa Requirements for Mars Travelers.pdf"
+        },
+        "type": "S3"
+      }
+    },
+    {...}
+  ],
+  "question": "What are the visa requirements for Mars?",
+  "documentsRetrieved": 5
+}</code></pre>
+
+                        <h4>Example DENIED Guardrail Request &amp; Response:</h4>
+                        <strong>Request:</strong>
+                        <pre><code>curl -X POST https://&lt;api-id&gt;.execute-api.eu-west-1.amazonaws.com/prod/qa \
+  -H "x-api-key: &lt;api-key&gt;" \
+  -H "Content-Type: application/json" \
+  -d '{"question": "What are my legal rights if the Mars immigration office denies my visa application?", ...}'</code></pre>
+
+                        <strong>Response:</strong>
+                        <pre><code>{
+  "answer": "I cannot answer that question as it violates our content policy.",
+  "sources": [
+    {
+      "document": 1,
+      "score": 0.46830863,
+      "location": {
+        "s3Location": {
+          "uri": "s3://vitraiaws-rag-documents/Visa Requirements for Mars Travelers.pdf"
+        },
+        "type": "S3"
+      }
+    },
+    {...}
+  ],
+  "question": "What are my legal rights if the Mars immigration office denies my visa application?",
+  "documentsRetrieved": 4
+}</code></pre>
                     </div>
 
                     <div class="project-tech">
@@ -349,6 +450,126 @@
                         <span class="tech-tag">Vector Databases</span>
                         <span class="tech-tag">Lambda Layers</span>
                         <span class="tech-tag">IAM</span>
+                    </div>
+                </div>
+
+                <!-- AWS Glue ETL Pipeline Project -->
+                <div class="project-card">
+                    <h3>AWS Glue ETL Pipeline with Event-Driven Orchestration</h3>
+
+                    <strong>Project Description:</strong>
+                    <p class="project-description">
+                        An event-driven ETL pipeline built on AWS Glue demonstrating data engineering practices.
+                        Processes the Netflix Movies (~9000 titles) with transformations (date parsing, feature extraction, data quality improvements),
+                        converting CSV to Parquet format for analytics. Features multiple orchestration approaches: Terraform automation, EventBridge + Lambda event-driven architecture,
+                        and AWS Step Functions state machines for complete workflow management.
+                    </p>
+
+                    <strong>Personal Project Goal:</strong>
+                    <p class="project-description">
+                        In this project, I wanted to create a demo completely managed by terraform in a way,
+                        that it uses the Glue Crawlers to populate an AWS Glue Data Catalog Database.
+                        The simple goal I set for myself was to have a Glue Job that executes some PySpark code,
+                        giving me a dataset that can be crawled by two crawlers, resulting in a source and a destination table, which can be analysed by Athena.
+                        Additionally, I wanted to add a Step Function State Machine to showcase similar approaches in data processing.
+                        By this point, the the demo could be 100% run by a simple <code>terraform apply</code> command, could be run manually,
+                        trusting the rest of the runs to EventBridge, and could be run or scheduled by a State Machine.
+                    </p>
+
+                    <!-- Toggle Button and Links -->
+                    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <button type="button" class="project-toggle" onclick="toggleEtlProject()">
+                            <span class="toggle-text">Show Details</span>
+                            <svg class="toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                            </svg>
+                        </button>
+                        <div class="project-links" style="margin: 0;">
+                            <a href="https://github.com/BSSB33/aws-glue-demo-iac" target="_blank" class="project-link">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 5px;">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                Terraform IaC
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Collapsible Content -->
+                    <div class="project-collapsible" id="etlProjectDetails">
+                        <!-- Infrastructure Diagrams -->
+                        <div class="project-diagram">
+                            <img src="resources/etl-infrastructure-composer.png" alt="ETL Pipeline Infrastructure Architecture" class="infrastructure-diagram">
+                            <p style="margin-top: 1rem; font-style: italic; color: #6b7280; font-size: 0.9rem;">
+                                AWS Application Composer visualization showing all infrastructure components and their relationships
+                            </p>
+                        </div>
+
+                        <!-- Event-Driven Architecture Flow -->
+                        <div class="project-details" style="margin-top: 1.5rem;">
+                            <h4>Event-Driven Architecture: Understanding the Flow</h4>
+                            <p class="project-description">
+                                This project demonstrates event-driven architecture through three orchestration approaches:
+                            </p>
+                            <p class="project-description">
+                                <strong>1. Terraform Provisioner Automation:</strong> On <code>terraform apply</code>, provisioners trigger the "source crawler", polls its status, then automatically start the Glue ETL job, demonstrating infrastructure-level event orchestration.
+                            </p>
+                            <p class="project-description">
+                                <strong>2. EventBridge + Lambda Pattern:</strong> When the Glue job completes, it emits a Glue Job State Change event to EventBridge. EventBridge matches the event pattern and invokes a Lambda function, which triggers the "destination crawler". This creates a reactive, loosely-coupled architecture where components respond to state changes.
+                            </p>
+                            <p class="project-description">
+                                <strong>3. Step Functions Orchestration:</strong> The state machine orchestrates the full workflow: Starts "source crawler" → polls until READY → starts Glue job (sync waits for completion) → starts "destination crawler" → polls until READY. Provides centralized control with visual tracking.
+                            </p>
+                        </div>
+
+                        <!-- Technical Implementation -->
+                        <div class="project-details">
+                            <h4>Architecture Highlights</h4>
+                            <ul class="project-features">
+                                <li><strong>Infrastructure as Code:</strong> All AWS resources provisioned and managed declaratively by Terraform. S3 backend with DynamoDB state locking.</li>
+                                <li><strong>Glue Data Catalog:</strong> Centralized metadata repository with two crawlers. Source crawler uses custom CSV classifier with OpenCSVSerde for proper quoted field parsing. Destination crawler automatically catalogs transformed Parquet files which can be reviewed in AWS Athena.</li>
+                                <li><strong>Glue ETL Job (PySpark):</strong> Spark transformations to the dataset: column renaming, type casting, date parsing, feature extraction, calculated fields, data cleaning. Outputs Parquet with CloudWatch logging.</li>
+                                <li><strong>EventBridge Event-Driven:</strong> Rule monitors job state changes, invokes Lambda on completion. Creates a reactive architecture.</li>
+                                <li><strong>Lambda Function:</strong> Triggered by EventBridge, starts "destination crawler" on job success. Handles "crawler already running" errors.</li>
+                                <li><strong>Step Functions:</strong> Orchestrates full workflow with polling loops and sync patterns. Built-in error handling and CloudWatch Logs integration.</li>
+                                <li><strong>S3 Organization:</strong> Single bucket with folders: source/, destination/, scripts/, logs/, temp/.</li>
+                                <li><strong>IAM Security:</strong> Separate roles with scoped permissions for Glue, Lambda, and Step Functions. No wildcard access.</li>
+                                <li><strong>Data Transformations:</strong> Processes Netflix dataset. Extracts structured data and outputs 16 analytical columns optimized for Athena.</li>
+                            </ul>
+
+                            <h4>Orchestration Approaches</h4>
+                            <ul class="project-features">
+                                <li><strong>For Demo/Development:</strong> Terraform provisioners for instant deployment.</li>
+                                <li><strong>For Production:</strong> EventBridge + Lambda for reactive automation.</li>
+                                <li><strong>Can be Scheduled:</strong> Step Functions for centralized control.</li>
+                            </ul>
+
+                            <div class="project-diagram" style="margin-top: 1.5rem;">
+                                <img src="resources/etl-state-machine-run.png" alt="Step Functions State Machine Execution" class="infrastructure-diagram" style="max-width: 600px; width: 100%;">
+                                <p style="margin-top: 1rem; font-style: italic; color: #6b7280; font-size: 0.9rem;">
+                                    Step Functions execution showing workflow with status polling loops
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="project-tech">
+                        <span class="tech-tag">Terraform</span>
+                        <span class="tech-tag">AWS Glue</span>
+                        <span class="tech-tag">PySpark</span>
+                        <span class="tech-tag">AWS Lambda</span>
+                        <span class="tech-tag">EventBridge</span>
+                        <span class="tech-tag">Step Functions</span>
+                        <span class="tech-tag">S3</span>
+                        <span class="tech-tag">CloudWatch</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">ETL</span>
+                        <span class="tech-tag">Parquet</span>
+                        <span class="tech-tag">Athena</span>
+                        <span class="tech-tag">IAM</span>
+                        <span class="tech-tag">Event-Driven Architecture</span>
+                        <span class="tech-tag">AWS Athena</span>
+                        <span class="tech-tag">CloudWatch</span>
                     </div>
                 </div>
             </div>
@@ -380,12 +601,31 @@
     <section id="achievements" class="section section-alt">
         <div class="container">
             <h2 class="section-title">Achievements</h2>
+
+            <div class="achievement">
+                <h4>Designed and maintained dozens of ETL pipelines for data acquisition and processing</h4>
+                <p>
+                    Architected and maintained large-scale ETL pipelines downloading data from official providers like Cloudera, Camerdata, HitHorizons
+                    and public web repositories. Implemented processing workflows using EC2 instances, applied proprietary matching tools for data
+                    enrichment, and orchestrated uploads to our AWS-based data lake.
+                </p>
+            </div>
+
             <div class="achievement">
                 <h4>Migrated legacy batching pipelines to streaming solutions</h4>
                 <p>
                     We maintained large-scale legacy pipelines, processing data using batching solutions. With my team, we have successfully
                     migrated away from these legacy systems and replaced them with state-of-the-art streaming solutions, providing live updates
                     and more a cost-effective infrastructure.
+                </p>
+            </div>
+
+            <div class="achievement">
+                <h4>Implemented Big Data Platform Kafka sink connectors</h4>
+                <p>
+                    Designed and implemented custom Kafka sink connectors for reading streaming Kafka data and storing it in a Postgres data lake.
+                    This solution enabled real-time data ingestion from multiple streaming sources, providing a scalable foundation for analytics
+                    while maintaining data consistency and reliability.
                 </p>
             </div>
         </div>
@@ -400,13 +640,13 @@
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                     </svg>
                 </a>
-                <a href="mailto:vitraig@gmail.com" aria-label="Email">
+                <a href="mailto:vitraig[at]hotmail[dot]com" aria-label="Email">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
                     </svg>
                 </a>
             </div>
-            <p>&copy; 2025 Vitrai Gábor. All rights reserved.</p>
+            <p>&copy; 2025 Vitrai Gábor. All rights reserved. Hosted 100% on AWS Cloud.</p>
         </div>
     </footer>
 
