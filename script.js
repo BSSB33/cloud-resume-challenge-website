@@ -81,6 +81,9 @@ function updateViewCounter() {
         return;
     }
 
+    // Check if user has already been counted in this browser session
+    const hasBeenCounted = sessionStorage.getItem('visitor_counted');
+
     // Lambda Function URL
     const API_ENDPOINT = 'https://idwplnuz6vbf2h7mjw6ztsa54q0mfwfy.lambda-url.eu-west-1.on.aws/';
 
@@ -88,11 +91,15 @@ function updateViewCounter() {
     viewCountElement.textContent = '...';
 
     // Call Lambda function
+    // Only increment if this is the first visit in this session
     fetch(API_ENDPOINT, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({
+            increment: !hasBeenCounted  // Only increment if not counted this session
+        })
     })
     .then(response => {
         if (!response.ok) {
@@ -101,6 +108,11 @@ function updateViewCounter() {
         return response.json();
     })
     .then(data => {
+        // Mark this session as counted (only if we actually incremented)
+        if (!hasBeenCounted) {
+            sessionStorage.setItem('visitor_counted', 'true');
+        }
+
         // Format the number with thousand separators
         const formattedViews = data.views.toLocaleString();
         viewCountElement.textContent = formattedViews;
