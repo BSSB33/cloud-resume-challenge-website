@@ -48,10 +48,10 @@
                 <div class="about-text">
                     <h3>Professional Summary</h3>
                     <p>
-                        I am an enthusiastic Data Engineer with a strong background in Computer Science and more than 3 years of experience.
-                        I specialize in ETL development, data pipeline design, and data warehousing using both streaming and batch processing solutions.
-                        I am experienced in leveraging the AWS Cloud and Apache Kafka for data-heavy projects. I have proven to be reliable as an On-Call Engineer and
-                        demonstrated strong collaboration and independent work skills. I have personal interest in cloud solutions, specially in the AWS Cloud.
+                        I am an enthusiastic Data Engineer with a strong Computer Science background and 4+ years of experience building data pipelines and solutions.
+                        I am experienced in leveraging the AWS Cloud and Apache Kafka for data-heavy projects. I specialize in ETL development, data pipeline design, 
+                        and data warehousing using both streaming and batch processing solutions. I have proven to be reliable as an On-Call Engineer and
+                        demonstrated strong collaboration and independent work skills.
                     </p>
                     <div class="info-grid">
                         <div class="info-item">
@@ -85,10 +85,10 @@
             <div class="skills-grid">
                 <span class="skill-tag">ETL Development</span>
                 <span class="skill-tag">Data Pipeline Design</span>
+                <span class="skill-tag">AWS Cloud</span>
                 <span class="skill-tag">Data Warehousing</span>
                 <span class="skill-tag">Data Migration</span>
                 <span class="skill-tag">Big Data Processing</span>
-                <span class="skill-tag">AWS Cloud</span>
                 <span class="skill-tag">Python/Java/Scala</span>
                 <span class="skill-tag">SQL (PostgreSQL)</span>
                 <span class="skill-tag">Apache Kafka</span>
@@ -119,7 +119,7 @@
                             <h4>Data Engineer</h4>
                             <p class="company">SpazioDati Srl., Trento, Italy</p>
                             <p>
-                                Implemented new and maintained existing data processing ETL pipelines and large scale projects.
+                                Implemented new and maintained existing data processing ETL pipelines and large scale projects built on AWS Cloud.
                                 Acquired, processed, migrated and stored, structured and unstructured data. Relied on AWS Cloud,
                                 Apache Kafka, Kubernetes, and Docker to implement dozens of pipelines. Monitored and maintained
                                 processes as an On-Call Engineer.
@@ -132,7 +132,7 @@
                             <h4>Data Engineer Intern</h4>
                             <p class="company">SpazioDati Srl., Trento, Italy</p>
                             <p>
-                                Created Machine Learning models for the task of Postal Address Extraction from Free Text.
+                                Designed, trained and implemented Machine Learning models for the task of Postal Address Extraction from Free Text.
                             </p>
                         </div>
                     </div>
@@ -212,15 +212,17 @@
                     <strong>Project Description:</strong>
                     <p class="project-description">
                         A production-ready serverless resume website built on AWS, demonstrating cloud architecture best practices,
-                        infrastructure as code, and modern CI/CD workflows. This project showcases end-to-end cloud engineering skills
+                        infrastructure as code, and CI/CD workflows. This project showcases end-to-end cloud engineering skills
                         from infrastructure provisioning to automated deployments.
                     </p>
 
                     <strong>Personal Project Goal:</strong>
                     <p class="project-description">
                         My goal with this project was to get my hands dirty with terraform, and create an online CV that utilizes
-                        technologies that are required by the Cloud Resume Challenge. With this small project,
+                        AWS technologies that are required by the Cloud Resume Challenge. With this project,
                         I wanted to have a place where I can collect my small projects and share my portfolio.
+                        From the technological side, my main goal was to use AWS CloudFront to distribute my page in a secure way, 
+                        have CI/CD pipelines set up, and have evertyhing under Terraform's management.
                     </p>
 
                     <!-- Toggle Button and Links -->
@@ -318,7 +320,7 @@
                         To make sure this is possible, I have found this official <a href="https://github.com/aws-samples/aws-generative-ai-terraform-samples/tree/main/samples" target="_blank">AWS sample codebase</a> that belongs to a Workshop.
                         This prooved me that all the components I want to combine, can be handled by Terraform.
                         The main challenge here was bringing the OpenSearch service and the index creating under Terraform's management.
-                        Adding Bedrock Guardrails and designing the components using Terraform moduls was an additional goal I set for myself.
+                        Adding Bedrock Guardrails and designing the components using Terraform modules was an additional goal I set for myself.
                         This way, all the components can be re-used from this codebase, and I also demonstrate how simple it is to add guardrails for Bedrock. (See examples at the bottom)
                     </p>
 
@@ -346,7 +348,7 @@
                         <div class="project-diagram">
                             <img src="resources/rag-infrastructure-composer.png" alt="RAG Application Infrastructure Architecture" class="infrastructure-diagram">
                         </div>
-                        <i>Please note that terraform manages exactly50 components in total for this project, however for the simplicity of this graph, I have removed resources like IAM Policies, the Guardrail and some REST API resources.
+                        <i>Please note that terraform manages exactly 50 components in total for this project, however for the simplicity of this graph, I have removed resources like IAM Policies, the Guardrail and some REST API resources.
                             For the full graph, open the tamplate.yaml file from the linked repository.</i>
 
                         <!-- Technical Implementation -->
@@ -370,10 +372,10 @@
                         <h4>Notes:</h4>
                         <p class="project-description">
                             The purpuse of the demo is not to have it production ready, but to showcase my understanding of such a system.
-                            The goal was to have the entire system managed by Terraform.
+                            The goal was to have the entire system managed by Terraform, so it can be easily created and destroyed to avoid high costs.
                             For future improvements the following developments could be done:
                             Add CI/CD, Add Debounced Auto-Sync for the Knowledge Base, Introduce proper dev/production environment, Implement a user facing UI.
-                            The application is not kept up running due to the high costs of the AWS Open Search service,
+                            The application is not kept up running due to the high costs of the AWS OpenSearch service,
                             if you want to try it out, feel free to clone the repository, set up your AWS CLI profile, rename the project and execute the <code>terraform apply</code> command!
                         </p>
 
@@ -460,7 +462,7 @@
                     <strong>Project Description:</strong>
                     <p class="project-description">
                         An event-driven ETL pipeline built on AWS Glue demonstrating data engineering practices.
-                        Processes the Netflix Movies (~9000 titles) with transformations (date parsing, feature extraction, data quality improvements),
+                        Processes the <a href="https://www.kaggle.com/datasets/shivamb/netflix-shows" target="_blank">Netflix Movies dataset</a> (~9000 titles) with different types of transformations (date parsing, feature extraction, data quality improvements),
                         converting CSV to Parquet format for analytics. Features multiple orchestration approaches: Terraform automation, EventBridge + Lambda event-driven architecture,
                         and AWS Step Functions state machines for complete workflow management.
                     </p>
@@ -470,10 +472,10 @@
                         In this project, I wanted to create a demo completely managed by terraform in a way,
                         that it uses the Glue Crawlers to populate an AWS Glue Data Catalog Database.
                         The simple goal I set for myself was to have a Glue Job that executes some PySpark code,
-                        giving me a dataset that can be crawled by two crawlers, resulting in a source and a destination table, which can be analysed by Athena.
-                        Additionally, I wanted to add a Step Function State Machine to showcase similar approaches in data processing.
-                        By this point, the the demo could be 100% run by a simple <code>terraform apply</code> command, could be run manually,
-                        trusting the rest of the runs to EventBridge, and could be run or scheduled by a State Machine.
+                        giving me a dataset that can be crawled by two crawlers, resulting in a source and a destination table which can be analysed using AWS Athena.
+                        Additionally, I wanted to add a Step Function State Machine to showcase an orchestrated data processing pipeline.
+                        By this point, the demo could be 100% run by a simple <code>terraform apply</code> command, alternatively could be run manually,
+                        trusting EventBridge to run the the components that were meant to run after the Glue Job. As a third option, the pipeline could be run or scheduled by the State Machine.
                     </p>
 
                     <!-- Toggle Button and Links -->
