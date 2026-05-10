@@ -129,3 +129,4 @@ jobs:
           echo "Files synced to S3: s3://${{ env.S3_BUCKET }}"
           echo "CloudFront cache invalidated"
           echo "Website URL: https://vitraigabor.eu"
+          echo "Resume URL: https://resume.vitraigabor.eu"
