@@ -1,0 +1,32 @@
+[
+	{
+		"name": "Papers and Documents",
+		"details": "Papers and Documents by me",
+		"url": "#!/private_subjects/papers/index.md",
+		"color": "primary"
+	},
+	{
+		"name": "CLOCK",
+		"details": "Digital Clock",
+		"url": "clock.html",
+		"color": "primary"
+	},
+	{
+		"name": "WEB 1.",
+		"details": "Webfejlesztés 1. 2017-2018-1",
+		"url": "/pages/subjects/web1",
+		"color": "gray"
+	},
+	{
+		"name": "Tantervi hálók",
+		"details": "Tantervi hálók IP-08 / IP-17 / IP-18",
+		"url": "#!/subjects/tantervihalok/halok.md",
+		"color": "blue"
+	},
+	{
+		"name": "Bsc Záróvizsga tételek",
+		"details": "Záróvizsga tételek - Fekete Dóra kidolgozása",
+		"url": "#!/subjects/zv1/index.md",
+		"color": "green"
+	}
+]
