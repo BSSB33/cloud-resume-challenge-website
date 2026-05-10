@@ -15,6 +15,8 @@ env:
   AWS_REGION: eu-west-1
   S3_BUCKET: vitraiaws-cloud-resume-challenge
   CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+  IK_S3_BUCKET: vitraiaws-ik-website
+  IK_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.IK_CLOUDFRONT_DISTRIBUTION_ID }}
 
 jobs:
   test:
@@ -70,7 +72,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Sync files to S3
+      - name: Sync resume site to S3
         run: |
           aws s3 sync . s3://${{ env.S3_BUCKET }} \
             --exclude ".git/*" \
@@ -78,6 +80,7 @@ jobs:
             --exclude "README.md" \
             --exclude ".gitignore" \
             --exclude ".DS_Store" \
+            --exclude "ik/*" \
             --delete
 
       - name: Set cache headers for HTML files
@@ -117,16 +120,31 @@ jobs:
             --content-type "image/png" \
             --cache-control "max-age=31536000"
 
-      - name: Invalidate CloudFront cache
+      - name: Invalidate resume site CloudFront cache
         run: |
           aws cloudfront create-invalidation \
             --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} \
             --paths "/*"
 
+      - name: Sync IK website to S3
+        run: |
+          aws s3 sync ik/ s3://${{ env.IK_S3_BUCKET }}/ \
+            --delete \
+            --exclude ".htaccess" \
+            --exclude ".htpasswd" \
+            --exclude "**/.htaccess" \
+            --exclude "**/.htpasswd" \
+            --exclude ".DS_Store" \
+            --exclude "**/.DS_Store"
+
+      - name: Invalidate IK website CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ env.IK_CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
+
       - name: Deployment summary
         run: |
-          echo "Website deployed successfully!"
-          echo "Files synced to S3: s3://${{ env.S3_BUCKET }}"
-          echo "CloudFront cache invalidated"
-          echo "Website URL: https://vitraigabor.eu"
-          echo "Resume URL: https://resume.vitraigabor.eu"
+          echo "All sites deployed successfully!"
+          echo "Resume: https://resume.vitraigabor.eu"
+          echo "IK website: https://ik.vitraigabor.eu"

@@ -1,0 +1,128 @@
+[
+	{ 
+		"name": "Záróvizsga tételsor IP-08.",
+		"details": "Záróvizsga tételsor 2008-as tentervhez",
+		"url": "/pages/subjects/zv1/PTIBSc_zv_tetelek.pdf",
+		"color": "red"
+	},
+	{ 
+		"name": "Tétel 01.",
+		"details": "1.Függvények határértéke, folytonossága",
+		"url": "/pages/subjects/zv1/pdf/tetel1.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 02.",
+		"details": "2.Differenciál- és integrálszámítás",
+		"url": "/pages/subjects/zv1/pdf/tetel2.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 03.",
+		"details": "3.Numerikus módszerek",
+		"url": "/pages/subjects/zv1/pdf/tetel3.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 04.",
+		"details": "4.Számelmélet, gráfok, kódoláselmélet",
+		"url": "/pages/subjects/zv1/pdf/tetel4.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 05.",
+		"details": "5.Valószínűségszámítási és statisztikai alapok",
+		"url": "/pages/subjects/zv1/pdf/tetel5.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 06.",
+		"details": "6.Mesterséges intelligencia",
+		"url": "/pages/subjects/zv1/pdf/tetel6.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 07.",
+		"details": "7.Programozás",
+		"url": "/pages/subjects/zv1/pdf/tetel7.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 08.",
+		"details": "8.Programfejlesztési modellek",
+		"url": "/pages/subjects/zv1/pdf/tetel8.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 09.",
+		"details": "9.Programok fordítása és végrehajtása",
+		"url": "/pages/subjects/zv1/pdf/tetel9.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 10.",
+		"details": "10.Programnyelvi alapok",
+		"url": "/pages/subjects/zv1/pdf/tetel10.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 11.",
+		"details": "11.Formális nyelvek",
+		"url": "/pages/subjects/zv1/pdf/tetel11.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 12.",
+		"details": "12.Logika és számításelmélet",
+		"url": "/pages/subjects/zv1/pdf/tetel12.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 13.",
+		"details": "13.Alapvető algoritmusok és adatszerkezetek",
+		"url": "/pages/subjects/zv1/pdf/tetel3.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 14.",
+		"details": "14.Haladó algoritmusok",
+		"url": "/pages/subjects/zv1/pdf/tetel14.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 15.",
+		"details": "15.Operációs rendszerek",
+		"url": "/pages/subjects/zv1/pdf/tetel15.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 16.",
+		"details": "16.Számítógépes hálózatok és Internet eszközök",
+		"url": "/pages/subjects/zv1/pdf/tetel16.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 17.",
+		"details": "17.Osztott rendszerek",
+		"url": "/pages/subjects/zv1/pdf/tetel17.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 18.",
+		"details": "18.Adatbázisok tervezése és lekérdezése",
+		"url": "/pages/subjects/zv1/pdf/tetel18.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Tétel 19.",
+		"details": "19.Adatbázisok optimalizálása és konkurencia kezelése",
+		"url": "/pages/subjects/zv1/pdf/tetel19.pdf",
+		"color": "yellow"
+	},
+	{ 
+		"name": "Összesítet kidolgozás",
+		"details": "Összesítet kidolgozás - PDF",
+		"url": "/pages/subjects/zv1/tetel_all.pdf",
+		"color": "primary"
+	}
+]
