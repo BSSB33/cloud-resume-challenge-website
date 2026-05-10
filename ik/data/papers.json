@@ -1,0 +1,63 @@
+[
+	{ 
+		"name": "Bachelor Thesis - Computer Science - 2020",
+		"details": "Vállalati Ügyviteli Rendszer Fejlesztése Spring segítségével",
+		"url": "/pages/private_subjects/papers/Szakdolgozat 2020.pdf",
+		"color": "primary"
+	},
+	{ 
+		"name": "Master Thesis 2022 UniTrento/ELTE",
+		"details": "Multilingual Address Extraction from Websites",
+		"url": "/pages/private_subjects/papers/Trento_EIT_Master_Thesis_2022_UniTrento.pdf",
+		"color": "primary"
+	},
+	{ 
+		"name": "Data Mining - 2022",
+		"details": "Data Mining Assignment",
+		"url": "/pages/private_subjects/papers/Data_Mining_Final_Project_2022.pdf",
+		"color": "gray"
+	},
+	{ 
+		"name": "HPC - 2022",
+		"details": "High Performance Computing Assignment",
+		"url": "/pages/private_subjects/papers/High_Performance_Computing_Project_2022.pdf",
+		"color": "gray"
+	},
+    { 
+		"name": "DSC Lab - 2021",
+		"details": "Feature Importance Calculation with Oversampling Methods In case of Imbalanced data",
+		"url": "/pages/private_subjects/papers/Data_Science_Lab_Paper_2021.pdf",
+		"color": "gray"
+	},
+    { 
+		"name": "ML Challenge - 2020",
+		"details": "Machine Learning Challenge 2020",
+		"url": "/pages/private_subjects/papers/Machine_Learning_Final_Assignment.pdf",
+		"color": "gray"
+	},
+    { 
+		"name": "Intro to DSC - 2020",
+		"details": "Introduction to Data Science Final Project 2020",
+		"url": "/pages/private_subjects/papers/Intro_to_DSC_Final_Report.pdf",
+		"color": "gray"
+	},
+	{ 
+		"name": "Privacy Policy - 2022",
+		"details": "Privacy Concerns regarding Google - Paper 2022",
+		"url": "/pages/private_subjects/papers/Privacy_Concerns_regarding_Google___Paper_2022_v2.pdf",
+		"color": "gray"
+	},
+    { 
+		"name": "Databases SQL Asignment - 2021",
+		"details": "Databases Assignment (SQL) 2021",
+		"url": "/pages/private_subjects/papers/SQL Documentation.pdf",
+		"color": "gray"
+	},
+    { 
+		"name": "Databases NOSQL Asignment - 2021",
+		"details": "Databases Assignment (NOSQL) 2021",
+		"url": "/pages/private_subjects/papers/NOSQL Documentation.pdf",
+		"color": "gray"
+	}
+
+]

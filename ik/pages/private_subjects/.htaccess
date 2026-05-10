@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Password Protected Area"
+AuthUserFile /afs/elte.hu/user/v/vitraig/web/pages/private_subjects/.htpasswd
+Require valid-user

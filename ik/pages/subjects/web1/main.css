@@ -1,0 +1,167 @@
+body{
+	background-image:url("pictures/background-mars.jpg");
+	background-attachment:fixed;
+	font-family: Helvetica, sans-seriff;
+	}
+.oldal {background-color:rgba(214, 107, 40,0.60);
+		width:80%; 
+		margin: auto;
+		padding: 10px;
+		padding-top: 10px;
+		}
+		
+.szoveg {padding-left: 20px; padding-right: 20px;}
+		
+p {	color:rgb(239, 239, 239);
+	padding: 20px;
+	font-size: 130%;
+	text-align: justify;
+	}
+	
+h1 {	color:rgb(191,89,42);
+		text-align: center;
+		}
+h2 {	color:rgb(0,0,0);
+}
+
+div#menu li{list-style-type: none;
+			display: inline;
+			padding: 5px 10px;
+			font-family: Helvetica, sans-seriff;
+			font-size: 120%;
+			font-weight: bold;
+			}	
+			
+div#menu {	margin: auto;
+			width: 100%;
+			text-align: center;
+			}
+a:link {color: rgb(135,64,32);}
+a:visited {color: rgb(191,89,42);}
+a:hover {color: grey;}
+
+ol, td {
+	color:rgb(239, 239, 239);
+	font-size:110%
+}
+
+img#header {
+		display: block;
+		margin: auto;
+		width: 100%;
+		border-radius: 3px;
+}
+
+.kep1 {	width: 500px;
+		height: 250px;
+		border-radius: 20px;
+}
+img#saturn {	width: 650px;
+				height: 1250px;
+				border-radius: 20px;
+}
+
+img#dragon {width: 500px;
+			height: 350px;
+			border-radius: 20px;
+}
+a#bfr {
+	color:rgb(0,0,0);
+}
+a#bfr2 {
+	color:rgb(0,0,0);
+}
+.indexkep {
+	height:150px;
+	width:150px;
+	border-radius: 20px;
+}
+table#life {
+		margin: auto;
+		text-align: center;
+		padding: 50px;
+		background-color:rgba(214, 107, 40,0.60)
+}
+.kozep {
+	text-align: center;
+	font-size: 110%;
+}
+a#current {color:rgb(0,0,0);}
+
+.rocket {
+	height:1300px;
+	width: 110px;
+	padding:50px;
+}
+.falcon {
+	width: 90%;
+	vertical-align: top;
+	text-align: center;
+	border-collapse: collapse;
+	padding: 10px;
+	margin: auto;
+	vertical-align: top;
+}
+.payload {
+	height:200px;
+	width:350px;
+	border-radius:20px;
+}
+.feedback {
+	background-color:rgba(214, 107, 40,0.60);
+	width:50%; 
+	margin: auto;
+	padding: 10px;
+}
+.landing {
+	height: 600px;
+	border-radius:20px;
+	margin: auto;
+}
+.f9engines {
+	border-radius:50px;
+	margin: auto;
+	text-align:center;
+	vertical-align:bottom;
+	padding:20px;
+}
+.rocketfh {
+	height:1300px;
+	width: 250px;
+	padding:10px;
+}
+.video { margin: auto; 
+		text-align: center;}
+.lista {
+	color: white;
+	font-size: 110%;
+}
+.gallery { 
+	height:250px;
+	width:250px;
+	border-radius:20px;
+	padding: 10px;
+}
+table#gallery {
+	text-align:center;
+	margin: auto;
+	width:60%;
+}
+.bfr {
+	border-radius: 40px;
+	padding: 20px;
+}
+.bfr_site {
+	text-align: center;
+}
+.parameterek {
+	background: rgba(214, 107, 40, 0.5);
+	padding: 20px;
+}
+video#video {width:800px;
+}
+img#testing {
+	width:500px;
+	padding: 20px;	
+	border-radius: 40px;
+}

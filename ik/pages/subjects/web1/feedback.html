@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="button.css">
+	<script src="top.js"></script> 
+	<title>Visszajelzés</title>
+</head>
+<body>
+	<div class="oldal">
+		<header>
+			<img id="header" src="pictures/header.jpg" alt="Fejléc-Mars">
+		</header>
+		<nav>
+			<div id="menu">
+			  <ul>
+				<li><a href="index.html">Home - A Vörös bolygó</a></li>
+				<li><a href="life.html">Élet a Marson</a></li>
+				<li><a href="f9.html">Falcon 9 / Falcon Heavy</a></li>
+				<li><a href="bfr.html">BFR</a></li>
+				<li><a id="current" href="feedback.html">Visszajelzés</a></li>
+				<li><a href="pictures.xhtml">Galéria</a></li>
+			  </ul>
+			</div>
+		</nav>
+	<hr>
+		<div class="szoveg">
+			<article><h1>Visszajelzés</h1>
+				<form action="mailto:vitraig@caesar.elte.hu" method="post" name="Vélemény" enctype="text/plain">
+
+						<div class="feedback">
+							<p>Ha tettszett a honlap érdekel a téma, vagy hibát találtál benne bátran írj 
+							nekem az alábbi űrlap segítségével!
+							</p>
+							<br>
+							<label>Neved:</label><br>
+							<input class="velemeny" type="text" name="nev" placeholder="Név">
+							<br>
+							<label>E-mail címed:</label><br>
+							<input class="velemeny" type="text" name="e-mailcim" placeholder="E-mail">
+							<br>
+							<label>Üzenet:</label><br>
+							<textarea class="velemeny" cols="60" placeholder="Ide írd..." name="velemenyem"></textarea>
+							<br>
+							<h2>Mivel Kapcsolatban Üzensz?</h2>
+								<input type="radio" name="tema" value="ertekeles" checked> Értékelés<br>
+								<input type="radio" name="tema" value="hiba"> Hiba<br>
+								<input type="radio" name="tema" value="erdeklodes"> Érdeklődés<br>
+								<input type="radio" name="tema" value="egyeb"> Egyéb
+							<br>
+							<h2>Tetszett az oldal?</h2>
+								<input type="checkbox" name="tetszett" value="tetszett"> Tetszett<br>
+								<input type="checkbox" name="nem tetszett" value="nem tetszett"> Nem Tetszett<br>
+							<br>
+							<input type="submit" name="Elküld">
+							<input type="reset" name="Alaphelyzetbe állít">
+						</div>
+
+				</form>
+			</article>
+			<br>
+		</div>
+	</div>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button> 
+</body>
+</html>
