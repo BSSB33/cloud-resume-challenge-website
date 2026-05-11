@@ -17,6 +17,8 @@ env:
   CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
   IK_S3_BUCKET: vitraiaws-ik-website
   IK_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.IK_CLOUDFRONT_DISTRIBUTION_ID }}
+  GALLERY_S3_BUCKET: vitraiaws-photos-backup-thumbnails
+  GALLERY_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.GALLERY_CLOUDFRONT_DISTRIBUTION_ID }}
 
 jobs:
   test:
@@ -81,6 +83,7 @@ jobs:
             --exclude ".gitignore" \
             --exclude ".DS_Store" \
             --exclude "ik/*" \
+            --exclude "gallery/*" \
             --delete
 
       - name: Set cache headers for HTML files
@@ -143,8 +146,64 @@ jobs:
             --distribution-id ${{ env.IK_CLOUDFRONT_DISTRIBUTION_ID }} \
             --paths "/*"
 
+      - name: Generate gallery manifest
+        run: |
+          python3 - <<'EOF'
+          import json, subprocess, sys
+          from datetime import datetime, timezone
+
+          result = subprocess.run(
+              ['aws', 's3api', 'list-objects-v2',
+               '--bucket', 'vitraiaws-photos-backup-thumbnails',
+               '--query', 'Contents[].Key',
+               '--output', 'json'],
+              capture_output=True, text=True
+          )
+          if result.returncode != 0:
+              print(result.stderr, file=sys.stderr)
+              sys.exit(1)
+
+          all_keys = json.loads(result.stdout) or []
+          image_exts = {'.jpg', '.jpeg', '.png', '.gif', '.webp', '.avif',
+                        '.JPG', '.JPEG', '.PNG'}
+          skip_prefixes = {'index.html', 'app.js', 'app.css', 'manifest.json'}
+
+          images = sorted(
+              k for k in all_keys
+              if any(k.endswith(e) for e in image_exts)
+              and k not in skip_prefixes
+          )
+
+          manifest = {
+              'generated': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+              'files': images
+          }
+          with open('manifest.json', 'w') as f:
+              json.dump(manifest, f, indent=2)
+          print(f'Manifest: {len(images)} images')
+          EOF
+
+      - name: Sync gallery app to S3
+        run: |
+          aws s3 sync gallery/ s3://${{ env.GALLERY_S3_BUCKET }}/ \
+            --exclude ".DS_Store" \
+            --exclude "**/.DS_Store"
+
+      - name: Upload gallery manifest
+        run: |
+          aws s3 cp manifest.json s3://${{ env.GALLERY_S3_BUCKET }}/manifest.json \
+            --content-type "application/json" \
+            --cache-control "max-age=300, must-revalidate"
+
+      - name: Invalidate gallery CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ env.GALLERY_CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/index.html" "/app.js" "/app.css" "/manifest.json"
+
       - name: Deployment summary
         run: |
           echo "All sites deployed successfully!"
           echo "Resume: https://resume.vitraigabor.eu"
           echo "IK website: https://ik.vitraigabor.eu"
+          echo "Gallery: https://gallery.vitraigabor.eu"
