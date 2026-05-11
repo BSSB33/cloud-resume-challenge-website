@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery &mdash; Vitrai G&aacute;bor</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <a href="https://vitraigabor.eu" class="sidebar-logo">VG</a>
+            <span class="sidebar-title">Gallery</span>
+        </div>
+        <div class="folder-tree" id="folderTree">
+            <div class="tree-loading">Loading&hellip;</div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <nav class="breadcrumb" id="breadcrumb" aria-label="breadcrumb"></nav>
+            <div class="stats" id="stats"></div>
+        </header>
+        <div class="content-area" id="contentArea">
+            <div class="loading-state">
+                <div class="spinner"></div>
+                <p>Loading gallery&hellip;</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+        <div class="lightbox-inner">
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        </div>
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
