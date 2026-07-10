@@ -133,10 +133,6 @@ jobs:
         run: |
           aws s3 sync ik/ s3://${{ env.IK_S3_BUCKET }}/ \
             --delete \
-            --exclude ".htaccess" \
-            --exclude ".htpasswd" \
-            --exclude "**/.htaccess" \
-            --exclude "**/.htpasswd" \
             --exclude ".DS_Store" \
             --exclude "**/.DS_Store"
 
