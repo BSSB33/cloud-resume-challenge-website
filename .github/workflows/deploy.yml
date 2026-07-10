@@ -182,6 +182,7 @@ jobs:
       - name: Sync gallery app to S3
         run: |
           aws s3 sync gallery/ s3://${{ env.GALLERY_S3_BUCKET }}/ \
+            --cache-control "max-age=300, must-revalidate" \
             --exclude ".DS_Store" \
             --exclude "**/.DS_Store"
 
