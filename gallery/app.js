@@ -222,19 +222,19 @@ function closeLightbox() {
 
 // ── Logout ────────────────────────────────────────────────────────────────
 
-async function logout() {
-    // Basic Auth has no session to destroy; the browser caches the
-    // credentials instead. Overwrite that cache with bogus credentials,
-    // then reload so the auth prompt appears again.
-    try {
-        await fetch('/index.html', {
-            headers: { 'Authorization': 'Basic ' + btoa('logout:' + Date.now()) },
-            cache: 'no-store'
-        });
-    } catch (err) {
-        // Ignore — the reload below surfaces the auth prompt either way
-    }
-    location.reload();
+function logout() {
+    // Basic Auth has no session to destroy; the browser holds the credentials
+    // in its internal HTTP-auth store (not cookies, not the cache). Credentials
+    // passed through XMLHttpRequest.open() overwrite that store — a fetch()
+    // with a manual Authorization header does not.
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '/index.html?logout=' + Date.now(), true, 'logout', 'logout');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            location.reload();
+        }
+    };
+    xhr.send();
 }
 
 document.getElementById('logoutBtn').addEventListener('click', logout);
