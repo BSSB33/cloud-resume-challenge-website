@@ -220,6 +220,25 @@ function closeLightbox() {
     document.body.style.overflow = '';
 }
 
+// ── Logout ────────────────────────────────────────────────────────────────
+
+async function logout() {
+    // Basic Auth has no session to destroy; the browser caches the
+    // credentials instead. Overwrite that cache with bogus credentials,
+    // then reload so the auth prompt appears again.
+    try {
+        await fetch('/index.html', {
+            headers: { 'Authorization': 'Basic ' + btoa('logout:' + Date.now()) },
+            cache: 'no-store'
+        });
+    } catch (err) {
+        // Ignore — the reload below surfaces the auth prompt either way
+    }
+    location.reload();
+}
+
+document.getElementById('logoutBtn').addEventListener('click', logout);
+
 document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
 document.getElementById('lightbox').addEventListener('click', function (e) {
     if (e.target === this) closeLightbox();

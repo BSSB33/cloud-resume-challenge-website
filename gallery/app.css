@@ -153,6 +153,7 @@ body {
     align-items: center;
     gap: .375rem;
     flex-wrap: wrap;
+    flex: 1;
 }
 
 .bc-item {
@@ -182,6 +183,29 @@ body {
     font-size: .8rem;
     color: var(--text-light);
     white-space: nowrap;
+}
+
+.logout-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    margin-left: 1rem;
+    padding: .4rem .75rem;
+    font-size: .8rem;
+    font-family: inherit;
+    color: var(--text-mid);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color .15s, border-color .15s, background .15s;
+}
+
+.logout-btn:hover {
+    color: #dc2626;
+    border-color: #fca5a5;
+    background: #fef2f2;
 }
 
 /* ── Content area ── */
