@@ -9,6 +9,11 @@ let currentPath = '';
 // ── Bootstrap ──────────────────────────────────────────────────────────────
 
 async function init() {
+    if (isIdleExpired()) {
+        logout();
+        return;
+    }
+    touchActivity();
     try {
         const resp = await fetch(MANIFEST_URL);
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
@@ -222,7 +227,33 @@ function closeLightbox() {
 
 // ── Logout ────────────────────────────────────────────────────────────────
 
+// Auto logout after 10 minutes of inactivity. The timestamp lives in
+// localStorage so an abandoned or reopened tab is logged out on return, and
+// activity in any tab keeps all tabs alive.
+const IDLE_LOGOUT_MS = 10 * 60 * 1000;
+const LAST_ACTIVITY_KEY = 'gallery_last_activity';
+
+function touchActivity() {
+    localStorage.setItem(LAST_ACTIVITY_KEY, String(Date.now()));
+}
+
+function isIdleExpired() {
+    const last = parseInt(localStorage.getItem(LAST_ACTIVITY_KEY), 10);
+    return !isNaN(last) && Date.now() - last > IDLE_LOGOUT_MS;
+}
+
+['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(evt =>
+    document.addEventListener(evt, touchActivity, { passive: true })
+);
+
+setInterval(() => {
+    if (isIdleExpired()) logout();
+}, 30000);
+
 function logout() {
+    // Clear the idle timestamp first so signing back in starts fresh
+    // instead of instantly re-triggering the idle check.
+    localStorage.removeItem(LAST_ACTIVITY_KEY);
     // Basic Auth has no session to destroy; the browser holds the credentials
     // in its internal HTTP-auth store (not cookies, not the cache). Credentials
     // passed through XMLHttpRequest.open() overwrite that store — a fetch()

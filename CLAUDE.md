@@ -37,6 +37,7 @@ npx eslint "*.js" --no-eslintrc --env browser,es6
 
 ### Gallery (`gallery/`)
 - Static SPA (`app.js`) that fetches `/manifest.json` (a listing of the thumbnails bucket generated at deploy time), builds a folder tree, and renders grids + a lightbox. Images are served from the same distribution, so everything sits behind the CloudFront Basic Auth function.
+- Logout (button + 10-min idle auto-logout via a `localStorage` activity timestamp) works by overwriting the browser's cached Basic Auth credentials through `XMLHttpRequest.open()` with bogus ones — a `fetch()` with a manual `Authorization` header does **not** update that store. Client-side only; not a security boundary.
 - The photos/thumbnails themselves are **not in this repo** — they live in the S3 bucket, uploaded by a separate backup process.
 
 ## Deployment (`.github/workflows/deploy.yml`)
@@ -45,7 +46,7 @@ Push to `main` runs tests then deploys all three sites. PRs and other branches r
 
 1. **Resume**: `aws s3 sync . <bucket> --delete` (excludes `.git`, `.github`, `README.md`, `ik/*`, `gallery/*`), then re-uploads key files with cache headers: HTML 5 min, CSS/JS 1 week, images 1 year. Full CloudFront invalidation.
 2. **IK**: `aws s3 sync ik/ <bucket> --delete` excluding `.htaccess`/`.htpasswd`/`.DS_Store`. Full invalidation.
-3. **Gallery**: generates `manifest.json` by listing the thumbnails bucket (image extensions only, skips app files), then `aws s3 sync gallery/ <bucket>` — **deliberately WITHOUT `--delete`**, because the bucket contains the photos, which are not in this repo. Adding `--delete` here would wipe the entire photo collection. Uploads the manifest (5 min cache) and invalidates only the app files + manifest.
+3. **Gallery**: generates `manifest.json` by listing the thumbnails bucket (image extensions only, skips app files), then `aws s3 sync gallery/ <bucket>` with a 5 min cache header — **deliberately WITHOUT `--delete`**, because the bucket contains the photos, which are not in this repo. Adding `--delete` here would wipe the entire photo collection. Uploads the manifest (5 min cache) and invalidates only the app files + manifest.
 
 Secrets used: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and the three `*_CLOUDFRONT_DISTRIBUTION_ID` values.
 
