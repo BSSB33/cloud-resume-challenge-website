@@ -424,11 +424,25 @@ html {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     border-left: 4px solid var(--primary-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
 }
 
 .cert-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.cert-icon {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.cert-text {
+    min-width: 0;
 }
 
 .cert-link {
