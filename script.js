@@ -74,6 +74,7 @@ window.addEventListener('scroll', () => {
 // View counter - calls Lambda function to increment and display count
 function updateViewCounter() {
     const viewCountElement = document.getElementById('view-count');
+    const weekCountElement = document.getElementById('view-count-week');
 
     // Check if element exists
     if (!viewCountElement) {
@@ -116,10 +117,18 @@ function updateViewCounter() {
         // Format the number with thousand separators
         const formattedViews = data.views.toLocaleString();
         viewCountElement.textContent = formattedViews;
+
+        // Current ISO week's count (null if the backend's weekly counter failed)
+        if (weekCountElement && typeof data.week_views === 'number') {
+            weekCountElement.textContent = data.week_views.toLocaleString();
+        }
     })
     .catch(error => {
         console.error('Error fetching view count:', error);
         viewCountElement.textContent = '---';
+        if (weekCountElement) {
+            weekCountElement.textContent = '---';
+        }
     });
 }
 

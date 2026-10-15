@@ -27,7 +27,7 @@ npx eslint "*.js" --no-eslintrc --env browser,es6
 ## Site Details
 
 ### Resume site (root)
-- `script.js` — typing animation, scroll effects, project detail toggles, and the **view counter**: POSTs to the Lambda Function URL with `{increment: bool}`; `sessionStorage.visitor_counted` ensures one increment per browser session (the backend additionally rate-limits to 1/hour/IP and only counts requests from the resume origin).
+- `script.js` — typing animation, scroll effects, project detail toggles, and the **view counter**: POSTs to the Lambda Function URL with `{increment: bool}` and shows the all-time `views` plus the current ISO week's `week_views` ("This week", may be `null` if the backend's weekly write failed); `sessionStorage.visitor_counted` ensures one increment per browser session (the backend additionally rate-limits to 1/hour/IP and only counts requests from the resume origin).
 - `robots.txt` — allows Googlebot/Bingbot/DuckDuckBot, disallows all other crawlers.
 
 ### IK site (`ik/`)

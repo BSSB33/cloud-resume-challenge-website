@@ -117,6 +117,11 @@ html {
     font-weight: bold;
 }
 
+.view-week {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.75rem;
+}
+
 /* Main Content Area */
 .main-content {
     margin-left: 250px;
@@ -825,6 +830,7 @@ p code, li code {
         padding: 0.75rem;
         margin-top: 0;
         flex-direction: row;
+        flex-wrap: wrap;
         gap: 0.5rem;
     }
 
@@ -834,6 +840,10 @@ p code, li code {
 
     .view-number {
         font-size: 1.2rem;
+    }
+
+    .view-week {
+        font-size: 0.7rem;
     }
 
     .main-content {
