@@ -369,6 +369,11 @@ html {
     font-size: 0.9rem;
 }
 
+.timeline-duration {
+    color: var(--text-light);
+    font-weight: 400;
+}
+
 .timeline-content h4 {
     font-size: 1.3rem;
     color: var(--text-dark);

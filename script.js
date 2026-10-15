@@ -131,6 +131,37 @@ if (document.readyState === 'loading') {
     updateViewCounter();
 }
 
+// Work experience durations - computed from data-start/data-end (YYYY-MM), inclusive of both months
+function formatDuration(totalMonths) {
+    const years = Math.floor(totalMonths / 12);
+    const months = totalMonths % 12;
+    const parts = [];
+    if (years > 0) parts.push(`${years} year${years > 1 ? 's' : ''}`);
+    if (months > 0) parts.push(`${months} month${months > 1 ? 's' : ''}`);
+    return parts.join(', ');
+}
+
+function updateExperienceDurations() {
+    const now = new Date();
+    document.querySelectorAll('.timeline-date[data-start]').forEach(dateEl => {
+        const [startYear, startMonth] = dateEl.dataset.start.split('-').map(Number);
+        const [endYear, endMonth] = dateEl.dataset.end
+            ? dateEl.dataset.end.split('-').map(Number)
+            : [now.getFullYear(), now.getMonth() + 1];
+        const totalMonths = (endYear - startYear) * 12 + (endMonth - startMonth) + 1;
+        const durationEl = dateEl.querySelector('.timeline-duration');
+        if (durationEl && totalMonths > 0) {
+            durationEl.textContent = `(${formatDuration(totalMonths)})`;
+        }
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateExperienceDurations);
+} else {
+    updateExperienceDurations();
+}
+
 // Intersection Observer for fade-in animations
 const observerOptions = {
     threshold: 0.1,
